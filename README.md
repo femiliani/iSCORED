@@ -24,13 +24,13 @@ Also its best practice for paths to be absolute and end in a trailing '/' eg: `/
   
   
 *** WHEN RUNNING LIVE *** 
-The `rundir` parameter looks for the directory where MinKNOW is saving the data, this should be the lowest directory, i.e. the one that contains the fast5 output directory, the run stats, etc. The pipeline automatically looks in that directory for the fast5 directory.  
+The `rundir` parameter looks for the directory where MinKNOW is saving the data, this should be the lowest directory, i.e. the one that contains the pod5 output directory, the run stats, etc. The pipeline automatically looks in that directory for the pod5 directory.  
 
 You are now ready to run the pipelines, below is an explanation on how to run the two variants plus some additional information
 
 ## Running the post-run analysis  
 The post run analysis assumes that you have all the data already generated. It will process all of the data you give it. The process for this is:
-1. Make an analysis directory as above, this will be both the `processdir` and possibly the `rundir` too depending on where your fast5s are and change directory into it. eg:
+1. Make an analysis directory as above, this will be both the `processdir` and possibly the `rundir` too depending on where your pod5s are and change directory into it. eg:
 ```
 cd /home/user/analysis/
 mkdir 230130_new_sample_analysis
