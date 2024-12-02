@@ -91,9 +91,9 @@ bash run_script.sh
 
 ## Description of config file parameters 
 
-**rundir**: in a live processing run, this is where dorado is saving the data eg: '/nanopore/data/yourrun/yoursample/20230920_1812_P2S-00522-A_PAM29382_6aef5d61/' the script automatically looks for the pod5 directory in here. In a post-run analysis, this field is not necessary, you can use the 'none' placeholder \
-**processdir**: this is where you want the processing to happen, and where the output files will be saved, you need to create this directory. \
-**patientsample**: this is what you want the output to be named (best not to use patient identifiers, a codename is best. \
+**rundir**: in a live processing run, this is where dorado is saving the data eg: '/nanopore/data/yourrun/yoursample/20230920_1812_P2S-00522-A_PAM29382_6aef5d61/' the script automatically looks for the pod5 directory in here. In a post-run analysis, this field is not necessary, you can use the 'none' placeholder \\
+**processdir**: this is where you want the processing to happen, and where the output files will be saved, you need to create this directory. \\
+**patientsample**: this is what you want the output to be named (best not to use patient identifiers, a codename is best. \\
 **outputdirname**: what you want the output dir to be called. \
 **threads**: the more threads, the faster this will run. We recommend a minimum of 12 threads. Numerical, eg 12\
 **prebasecalled**: if you are running a post-run analysis, this is the path to the BAM file from basecalling, it has to be basecalled with the sup model and 5mCG_5hmCG model, otherwise we cannot extract the methylation information. In a live run analysis, this filed is not necessary, you can use the 'none' placeholder\
