@@ -90,7 +90,7 @@ bash run_script.sh
 7. Come back in an hour and enjoy the results 
 
 ## Description of config file parameters 
-```
+
 rundir: in a live processing run, this is where dorado is saving the data eg: '/nanopore/data/yourrun/yoursample/20230920_1812_P2S-00522-A_PAM29382_6aef5d61/' the script automatically looks for the pod5 directory in here. In a post-run analysis, this field is not necessary, you can use the 'none' placeholder 
 processdir: this is where you want the processing to happen, and where the output files will be saved, you need to create this directory. 
 patientsample: this is what you want the output to be named (best not to use patient identifiers, a codename is best. 
@@ -104,7 +104,7 @@ cleanup: TRUE or FALSE, if TRUE will remove some of the intermediate files that 
 timepoints: In a live-run analysis set this to 'all', in a post-run you can set to 'all' to process everything, or, if you are only interested in a subset of the data you can set this to '10,50' this will process data generated between minutes 10 and 50. 
 methylation: which methyaltion model you want to use, options are RapidCNS, Sturgeon38, SturgeonT2T as a comma-delimited string, eg. RapidCNS,Sturgeon38 it should be apparent that the more options you choose the longer the processing will take, so we do not recommend using more than 1 in a live-run analysis, but in post-run analysis this only adds 5-10 minutes. 
 
-```
+
 
 ## Brief explanation of where the data ends up
 The data will all appear in the output directory (automatically called output_automated, but you can change its name in the config file) the important files are:
