@@ -10,7 +10,8 @@
 
 ### The basic premise
 
-To run iSCORED there are two options, either running live during the sequencing, or post-run.  
+To run iSCORED there are three options, either running live during the sequencing, or post-run on your machine. Alternatively, you can reach out to our group and have the data processed in a clinical informatics cloud platform that will simplify your computational needs. 
+
 For your first run we recommend starting with a small dataset so that you can ensure all the tools are installed correctly.  
   
 The first step, that works for both pipelines is to create an analysis directory, this should be sample specific.  
