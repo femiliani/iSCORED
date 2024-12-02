@@ -48,7 +48,7 @@ The rundir is not necessary in this analysis, the processdir needs to point to t
 3. Create the analysis script by running:
 ```
 #make sure the name of the config file at the end of this command matches what you named it 
-python /<yourpath>/iSCORED/create_live_iSCORED_dorado_pipeline_v0_1_4.py 230130_iSCORED.config
+python /<yourpath>/iSCORED/create_iSCORED_dorado_pipeline.py 230130_iSCORED.config
 ```
 
 4. Run the analysis with: 
@@ -79,7 +79,7 @@ cp /<yourpath>/iSCORED/iSCORED.config ./230130_iSCORED.config
 5. Create the analysis script by running:
 ```
 #make sure the name of the config file at the end of this command matches what you named it 
-python /<yourpath>/iSCORED/create_postrun_iSCORED_dorado_pipeline.py 230130_iSCORED.config
+python /<yourpath>/iSCORED/create_iSCORED_dorado_pipeline.py 230130_iSCORED.config
 ```
 
 6. Run the analysis with: 
