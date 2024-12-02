@@ -3,7 +3,8 @@
 ## Table of contents:
 -  The basic premise of iSCORED pipeline
 -  Running the post-run analysis
--  Running the live analysis 
+-  Running the live analysis
+-  Description of config file parameters 
 -  Brief explanation of where the data ends up
 
 
@@ -36,17 +37,18 @@ cd /home/user/analysis/
 mkdir 230130_new_sample_analysis
 cd 230130_new_sample_analysis
 ```
-Note: When you are running the post-run analysis pipeline, if the data is backed up on a different drive, e.g. an HDD you have to temporarily copy the fast5s to a directory on the computers SSD because the conversion to pod5 stalls if the data is on an HDD. The simplest solution is to set the `rundir` to be the same as the `processdir` location and do add a fast5 directory in the `processdir` that contains the fast5s 
 
-2. Copy over the configuration file from `/<yourpath>/iSCORED/iSCORED.config` and edit the appropriate fields by running:
+2. Copy over the configuration file from `/<yourpath>/iSCORED/iSCORED.config` by running:
 ``` 
 #you can rename it to be specific for this run, for example since we are running this on 23/01/30 i will name it 230130_iSCORED.config
 cp /<yourpath>/iSCORED/iSCORED.config ./230130_iSCORED.config 
 ```
+The rundir is not necessary in this analysis, the processdir needs to point to the directory you just created, and the prebasecalled needs to point to a BAM file that was processed with the sup model with 5mCG_5hmCG modifications. You can set subsets to 1 and runtime to 0.01 (this affects how long the script waits to starts processing data).  This mode lets you control how much data you want to process, `all` will process the entire bam file,  `10,50` will process reads produced at from minutes 10 to 50. 
+
 3. Create the analysis script by running:
 ```
 #make sure the name of the config file at the end of this command matches what you named it 
-python /<yourpath>/iSCORED/create_postrun_iSCORED_dorado_pipeline.py 230130_iSCORED.config
+python /<yourpath>/iSCORED/create_live_iSCORED_dorado_pipeline_v0_1_4.py 230130_iSCORED.config
 ```
 
 4. Run the analysis with: 
@@ -73,7 +75,7 @@ cd 230130_new_sample_analysis
 cp /<yourpath>/iSCORED/iSCORED.config ./230130_iSCORED.config 
 ```
 3. Start running the flow cell, and give minknow a few minutes to generate the `rundir` 
-4. Go back and add the `rundir` path 
+4. Go back and add the `rundir` path to the config file 
 5. Create the analysis script by running:
 ```
 #make sure the name of the config file at the end of this command matches what you named it 
@@ -87,6 +89,22 @@ bash run_script.sh
 
 7. Come back in an hour and enjoy the results 
 
+## Description of config file parameters 
+```
+rundir: in a live processing run, this is where dorado is saving the data eg: '/nanopore/data/yourrun/yoursample/20230920_1812_P2S-00522-A_PAM29382_6aef5d61/' the script automatically looks for the pod5 directory in here. In a post-run analysis, this field is not necessary, you can use the 'none' placeholder 
+processdir: this is where you want the processing to happen, and where the output files will be saved, you need to create this directory. 
+patientsample: this is what you want the output to be named (best not to use patient identifiers, a codename is best. 
+outputdirname: what you want the output dir to be called. 
+threads: the more threads, the faster this will run. We recommend a minimum of 12 threads. Numerical, eg 12
+prebasecalled: if you are running a post-run analysis, this is the path to the BAM file from basecalling, it has to be basecalled with the sup model and 5mCG_5hmCG model, otherwise we cannot extract the methylation information. In a live run analysis, this filed is not necessary, you can use the 'none' placeholder
+basecallmodel: in a live analysis this will determine which model dorado uses, we recommend having this model downloaded in the 'modeldir' directory (parameter below) as downloading it every time will slow down the pipeline. 
+runtime: in a live-run this will determine how much data will be collected for analysis, it is in hours so 20 minutes (what we use) is 0.3. If you are doing a post-run analysis, there is no need to wait for data, you can set this to 0.01. 
+subsets: In a live-run you can subset data to help reduce processing bottlenecking. We generally use 4 subsets, in a 20 minute run this means it will process data in ~5 minute chunks as they are produced. In a post-run analysis, this can be set to 1. 
+cleanup: TRUE or FALSE, if TRUE will remove some of the intermediate files that just take up space. If you are having errors in the pipeline you can set this to FALSE and troubleshoot. 
+timepoints: In a live-run analysis set this to 'all', in a post-run you can set to 'all' to process everything, or, if you are only interested in a subset of the data you can set this to '10,50' this will process data generated between minutes 10 and 50. 
+methylation: which methyaltion model you want to use, options are RapidCNS, Sturgeon38, SturgeonT2T as a comma-delimited string, eg. RapidCNS,Sturgeon38 it should be apparent that the more options you choose the longer the processing will take, so we do not recommend using more than 1 in a live-run analysis, but in post-run analysis this only adds 5-10 minutes. 
+
+```
 
 ## Brief explanation of where the data ends up
 The data will all appear in the output directory (automatically called output_automated, but you can change its name in the config file) the important files are:
