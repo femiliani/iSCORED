@@ -29,7 +29,7 @@ The `rundir` parameter looks for the directory where MinKNOW is saving the data,
 
 You are now ready to run the pipelines, below is an explanation on how to run the two variants plus some additional information
 
-*** Before starting you need to obtain the `sturgeon91.zip` and `probes_chm13v2.bed` from the sturgeon github at: https://github.com/marcpaga/sturgeon
+*** Before starting you need to obtain the `sturgeon91.zip` and `probes_chm13v2.bed` from the sturgeon github at: https://github.com/marcpaga/sturgeon and place them in the scripts direcotry. 
 
 ## Running the post-run analysis  
 The post run analysis assumes that you have all the data already generated. It will process all of the data you give it. The process for this is:
